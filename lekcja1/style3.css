@@ -1,0 +1,54 @@
+@media screen and (max-width: 2560px) {
+    html {
+        font-size: 2rem;
+    }
+}
+
+@media screen and (max-width: 1367px) {
+    html {
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 769px) {
+    html {
+        font-size: 0.75rem;
+    }
+}
+
+@media screen and (max-width: 321px) {
+    html {
+        display: none;
+    }
+}
+
+.c-heading {
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+.c-heading--h1 {
+    font-size: 3rem;
+}
+
+.c-heading--h2 {
+    font-size: 2rem;
+}
+
+.c-heading--h3 {
+    font-size: 1.5rem;
+}
+
+.c-heading--h4 {
+    font-size: 1rem;
+}
+
+.c-heading--h5 {
+    font-size: 0.9rem
+}
+
+.c-heading--h6 {
+    font-size: 0.75rem
+}
+
+/* stała wielkośc fontu

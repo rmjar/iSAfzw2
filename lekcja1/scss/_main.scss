@@ -1,0 +1,8 @@
+.c-heading {
+    font-family: sans-serif;
+    @for $i from 1 to 7 {
+        &--h#{$i} {
+            font-size: (3 / $i) * 1rem;
+        }
+    }
+}

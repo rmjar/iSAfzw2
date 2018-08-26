@@ -1,0 +1,40 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.c-ratio {
+    width: 100%;
+    max-width: 200px;
+    margin: auto;
+    position: relative;
+    background-color: blue;
+    display: inline-block;
+}
+
+.c-ratio:before {
+    content: "";
+    display: block;
+}
+
+
+.c-ratio--1-1:before {
+    padding-bottom: 100%;
+}
+
+.c-ratio--1-2:before {
+    padding-bottom: 50%;
+}
+
+.c-ratio--16-9:before {
+    padding-bottom: 56.25%;
+}
+
+
+.c-ratio--16-10:before {
+    padding-bottom: 62.5%;
+}
+
+.c-ratio--7-5:before {
+    padding-bottom: 71.42%;
+}

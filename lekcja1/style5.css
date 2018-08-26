@@ -1,0 +1,29 @@
+img {
+    max-width: 100%;
+    min-width: 100%;
+    height: auto;
+}
+
+.c-container {
+    width: 1200px;
+    max-width: 100%;
+    margin: auto;
+}
+
+@media (max-width: 1366px) {
+    .c-container--awd {
+        width: 1024px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .c-container--awd {
+        width: 640px;
+    }
+}
+
+@media (max-width: 480px) {
+    .c-container--awd {
+        width: 100%;
+    }
+}

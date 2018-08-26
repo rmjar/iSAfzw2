@@ -1,0 +1,42 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 0
+}
+
+.c-rect {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    width: calc( 100% / 12);
+    height: 100px;
+    text-align: center;
+    line-height: 100px;
+    font-weight: 700;
+    font-size: 56px;
+    color: black;
+}
+
+/* Laptop */
+
+@media (max-width: 1366px) {
+    .c-rect {
+        width: calc(100% / 6);
+    }
+}
+
+/* Tablet landscape */
+
+@media (max-width: 1280px) {
+    .c-rect {
+        width: calc(100% / 4);
+    }
+}
+
+/* Tablet portait */
+
+@media (max-width: 1024) {
+    .c-rect {
+        width: calc(100% / 3);
+    }
+}

@@ -1,0 +1,120 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 0
+}
+
+.c-rect {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    width: calc( 100% / 12);
+    height: 100px;
+    text-align: center;
+    line-height: 100px;
+    font-weight: 700;
+    font-size: 56px;
+    color: black;
+}
+
+.c-rect--1 {
+    background: red;
+}
+
+.c-rect--2 {
+    background: blue;
+}
+
+.c-rect--3 {
+    background: green;
+}
+
+.c-rect--4 {
+    background: yellow;
+}
+
+.c-rect--5 {
+    background: orange;
+}
+
+.c-rect--6 {
+    background: pink;
+}
+
+.c-rect--7 {
+    background: aqua;
+}
+
+.c-rect--8 {
+    background: chocolate;
+}
+
+.c-rect--9 {
+    background: darkgrey;
+}
+
+.c-rect--10 {
+    background: lawngreen;
+}
+
+.c-rect--11 {
+    background: hotpink;
+}
+
+.c-rect--12 {
+    background: gold;
+}
+
+.c-container {
+    width: 1200px;
+    max-width: 100%;
+    margin: auto;
+}
+
+/* Laptop */
+
+@media (max-width: 1366px) {
+    .c-rect {
+        width: calc(100% / 6);
+    }
+}
+
+/* Tablet landscape */
+
+@media (max-width: 1280px) {
+    .c-container--awd {
+        width: 1024px;
+    }
+    .c-rect {
+        width: calc(100% / 4);
+    }
+}
+
+/* Tablet portait */
+
+@media (max-width: 1024px) {
+    .c-container--awd {
+        width: 768px;
+    }
+    .c-rect {
+        width: calc(100% / 3);
+    }
+}
+
+@media (max-width: 640px) {
+    .c-container--awd {
+        width: 480px;
+    }
+    .c-rect {
+        width: calc(100% / 2);
+    }
+}
+
+@media (max-width: 480px) {
+    .c-container--awd {
+        width: 100%;
+    }
+    .c-rect {
+        width: 100%;
+    }
+}
