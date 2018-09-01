@@ -14,7 +14,7 @@ body {
     line-height: 100px;
     font-weight: 700;
     font-size: 56px;
-    color: black;
+    color: orangered;
 }
 
 /* Laptop */
@@ -27,7 +27,7 @@ body {
 
 /* Tablet landscape */
 
-@media (max-width: 1280px) {
+@media (max-width: 1024px) {
     .c-rect {
         width: calc(100% / 4);
     }
@@ -35,7 +35,7 @@ body {
 
 /* Tablet portait */
 
-@media (max-width: 1024) {
+@media (max-width: 640px) {
     .c-rect {
         width: calc(100% / 3);
     }
