@@ -1,0 +1,41 @@
+body {
+    display: grid;
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+    grid-gap: 10px;
+    grid-template: 100px 1fr 100px / repeat(3, 1fr);
+    grid-template-areas: "logo menu menu" "content content sidebar" "footer footer footer"
+}
+
+header {
+    grid-area: logo;
+    background: red
+}
+
+nav {
+    grid-area: menu;
+    background: blue;
+}
+
+main {
+    grid-area: content;
+    background: green;
+}
+
+aside {
+    grid-area: sidebar;
+    background: yellow;
+}
+
+footer {
+    grid-area: footer;
+    background: maroon;
+}
+
+@media (max-width: 1024px) {
+    body {
+        grid-template: repeat(5, 1fr) / 1fr;
+        grid-template-areas: "logo" "menu" "sidebar" "content" "footer";
+    }
+}
