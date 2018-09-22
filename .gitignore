@@ -1,5 +1,5 @@
 .gitignore
-
+*.gpg
 # Created by https://www.gitignore.io/api/git,visualstudiocode
 
 ### Git ###
