@@ -1,8 +1,9 @@
+
+
+//pop an element - remove 4
 var z = [1, 2, 3,4];
 console.log(z);
-z.length=0; //clear an array
-console.log(z);
-z.push(2);
+z.pop();
 console.log(z);
 
 
