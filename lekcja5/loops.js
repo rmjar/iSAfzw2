@@ -1,10 +1,41 @@
+var z = [1, 2, 3,4];
+console.log(z);
+z.length=0; //clear an array
+console.log(z);
+z.push(2);
+console.log(z);
 
-const a = [1, 2, 3, 4, 5];
-var i = 0;
-while (i < a.length) {
-    console.log(a[i]);
-    i++;
-}
+
+// const a = [];
+
+// for (let i = 0; i < 100; i++) {
+//     a.push(Math.floor((Math.random() * 1000) + 1));
+//     if (i >= 1) {
+//         break;
+//     }
+// }
+
+// console.log(a);
+
+
+
+// let i = 0;
+// while (i < 5) {
+//     i++;
+//     if (i === 3) {
+//         break;
+//     }
+//     console.log(i)
+// }
+
+
+
+// const a = [1, 2, 3, 4, 5];
+// var i = 0;
+// while (i < a.length) {
+    // console.log(a[i]);
+    // i++;
+// }
 
 
 
