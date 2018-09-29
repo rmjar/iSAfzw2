@@ -1,11 +1,82 @@
 
+(function(a,b) {
+    var sum = a+b;
+    console.log(sum);
+}) (10, 20);
 
-//pop an element - remove 4
-var z = [1, 2, 3,4];
-console.log(z);
-z.pop();
-console.log(z);
 
+
+// let sum;
+
+// function a(a, b) {
+//     var sum = a + b;
+//     return sum;
+// }
+
+// console.log(a(1,2));
+
+// var myCar = new Object();
+
+// myCar.make = "Honda";
+// myCar.is = true;
+
+
+// console.log(myCar);
+
+// var otherCar = {
+//     make : "Mazda",
+//     is : false,
+//     sound: function() {alert("Wrrrr!");}
+// }
+
+// console.log(otherCar);
+// otherCar.sound();
+
+
+//console.log([1,2,3,4,5,6,7,8,9,10].indexOf(9));
+
+
+
+// const tblLen = (Math.floor(Math.random() * 9 + 2) << 1);
+// const tbl = [];
+// for (var i = 0; i < tblLen; i++) {
+//     tbl.push(Math.floor(Math.random() * 200 + 1));
+// }
+
+// const tbl2 = tbl.slice(tbl.length / 2 - 2, tbl.length / 2 + 2);
+
+// console.log(tbl, tbl2);
+
+
+
+// const t1 = [1, 9, 3, 4, 5, 6];
+// ///const t2 = Array.of(t1[1], t1[t1.length - 1]);
+// const t3 = [...t1.slice(1, 2), ...t1.slice(5, 6)];
+// //console.log(t1.slice(5, 6));
+// //console.log(t2);
+// console.log(t3);
+
+// t2[1].push(4);
+// console.log(t1, t2);
+
+// const numbers = [1, 2, 3, 4, 5];
+// numbers.unshift(0);
+// numbers.push(6);
+// console.log(numbers);
+
+
+// console.log("Hello, Wordl!".length);
+
+// //pop an element - remove 4
+// var z = [1, 2, 3,4];
+// console.log(z);
+// console.log(z.pop()); //remove last index
+// z.push('a', 'b', 'c'); //add to the end of array
+// console.log(z);
+// z.shift(); //remove 0 index
+// console.log(z);
+// z.unshift(-2, -1); //add as first elements
+// console.log(z);
 
 // const a = [];
 
