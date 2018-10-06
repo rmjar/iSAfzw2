@@ -3,10 +3,10 @@ Zmiany zmiany zmiany zmiany
 
 
 
-(function(a,b) {
-    var sum = a+b;
-    console.log(sum);
-}) (10, 20);
+    (function (a, b) {
+        var sum = a + b;
+        console.log(sum);
+    })(10, 20);
 
 
 
