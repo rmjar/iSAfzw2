@@ -1,4 +1,4 @@
-Zmiany zmiany zmiany zmiany
+// Zmiany zmiany zmiany zmiany
 
 
 
