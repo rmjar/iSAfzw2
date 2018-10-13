@@ -1,14 +1,30 @@
-
 'use strict';
 
 
-const people = [
-    { name: 'janek', age: 31 },
-    { name: 'wiola', age: 35 },
-    { name: 'mateusz', age: 29 },
-    { name: 'kamila', age: 25 },
-    { name: 'olaf', age: 33 },
-    { name: 'sylwia', age: 25 }
+const people = [{
+        name: 'janek',
+        age: 31
+    },
+    {
+        name: 'wiola',
+        age: 35
+    },
+    {
+        name: 'mateusz',
+        age: 29
+    },
+    {
+        name: 'kamila',
+        age: 25
+    },
+    {
+        name: 'olaf',
+        age: 33
+    },
+    {
+        name: 'sylwia',
+        age: 25
+    }
 ];
 
 
@@ -23,7 +39,21 @@ function find(fn) {
 
 people.myFind = find;
 
+function filter(fn) {
+    const arr = [];
+    for (let i = 0; i < this.length; i++) {
+        if (fn(this[i])) {
+            arr.push(this[i]);
+        }
+    }
+    return arr;
+}
+
+people.myFilter = filter;
+
 console.log(people.myFind((arg) => arg.age === 25));
+
+console.log(people.myFilter((arg) => arg.age > 29));
 
 // const names = ['Janek', 'Wiola', 'Mateusz', 'Kamila', 'Olaf', 'Sylwia'];
 
