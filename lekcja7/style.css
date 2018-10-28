@@ -1,0 +1,21 @@
+.game td {
+    width: 20px;
+    height: 20px;
+}
+
+
+.wall {
+    background-color: black;
+}
+
+.empty {
+    background-color: pink;
+}
+
+.hero {
+    background-color: gold;
+}
+
+.exit {
+    background-color: red;
+}

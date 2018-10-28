@@ -228,3 +228,13 @@ Function.prototype.myBind = function (newThis, ...arg) {
     }
 }
 
+
+
+const obj1028 = {
+    val: 1,
+}
+
+const obj21028 = Object.create(obj1028);
+
+console.log(obj21028);
+console.log(obj21028 instanceof obj1028 )
