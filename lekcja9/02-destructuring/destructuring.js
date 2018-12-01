@@ -36,3 +36,16 @@ function findFirstAndLast([first, ...middle]) {
   console.log(first, last);
 }
 findFirstAndLast(searchedArray)
+
+
+
+const obj = {
+  person : {
+    age: 25,
+    name: "Michal"
+  }
+}
+
+const { person : {age} } = obj;
+
+console.log(age)
