@@ -14,4 +14,5 @@
 
 
 # End of https://www.gitignore.io/api/git,visualstudiocode
-lekcja11/my-app/node_modules/*
+lekcja11/my-app/node_modules
+node_modules
