@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import classNames from 'classnames';
 
-export class News extends Component {
+class News extends Component {
     render() {
         return <div>
             <p>News</p>
@@ -9,4 +9,6 @@ export class News extends Component {
         </div>
     }
 }
+
+export default News;
 

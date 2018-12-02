@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import classNames from 'classnames';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import {News} from './components/News/News';
+import News from './components/News';
 import {Navbar} from './components/Navbar/Navbar';
 import {Footer} from './components/Footer/Footer';
 import Contact from './components/Contact/Contact';
