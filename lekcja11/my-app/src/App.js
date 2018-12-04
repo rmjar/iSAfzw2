@@ -133,6 +133,7 @@ class App extends Component {
     render() {
         return <PersonList2 people={people} />
     }
-}
+  }
+  
 
 export default App;
