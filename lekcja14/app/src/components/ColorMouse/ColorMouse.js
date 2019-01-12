@@ -10,24 +10,29 @@ const mouseMoveColor = (WrappedComponent) => {
             this.state = {
                 offsetX: null,
                 offsetY: null,
-                listener: null
+                listener: null,
             }
         }
 
-        componentDidMount() {
-            const lstn = window.addEventListener('mousemove', ({ offsetX, offsetY }) => {
-                this.setState({
-                    offsetX,
-                    offsetY
-                });
+
+        myMouseListener = ({ offsetX, offsetY }) => {
+            this.setState({
+                offsetX,
+                offsetY
             })
+        }
+
+        componentDidMount() {
+            const lstn = window.addEventListener('mousemove', this.myMouseListener);
             this.setState({
                 listener: lstn,
             })
         }
 
         componentWillUnmount() {
-            
+            if (!this.state.lstn) {
+                window.removeEventListener('mousemove', this.myMouseListener)
+            }
         }
 
         isTop() {
