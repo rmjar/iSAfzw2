@@ -9,6 +9,8 @@ export class Navbar extends Component {
             <Link to="/contact">Contact</Link>
             <Link to="/news">News</Link>
             <Link to="/hocs">Hocs</Link>
+            <Link to='/colorMouse'>Color mouse</Link>
+            <Link to='/promLoader'>Promise loader</Link>
         </div>
     }
 }

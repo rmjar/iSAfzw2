@@ -7,6 +7,8 @@ import {Footer} from './components/Footer/Footer';
 import Contact from './components/Contact/Contact';
 import Home from './components/Home/Home';
 import Hocs from './components/Hocs'
+import ColorMouse from './components/ColorMouse';
+import PromLoader from './components/PromLoader'
 
 import './App.css';
 
@@ -22,6 +24,8 @@ import './App.css';
               <Route path="/contact" component={Contact} />
               <Route path="/news" component={News} />
               <Route path="/hocs" component={Hocs} />
+              <Route path="/colorMouse" component={ColorMouse} />
+              <Route path="/promLoader" component={PromLoader} />
               <Route path="/" component={Footer} />
           </div>
           </Router>
