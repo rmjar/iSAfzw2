@@ -7,6 +7,6 @@
         "type": "node",
         "request": "launch",
         "name": "Launch Program",
-        "program": "${workspaceFolder}/lekcja9/02-destructuring/destructuring.js"
+        "program": "${workspaceFolder}/lekcja14/main.js"
     }]
 }
