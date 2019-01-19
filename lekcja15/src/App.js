@@ -11,15 +11,15 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch('https://infoshareacademy-742f2.firebaseio.com/user.json')
+    fetch('https://pulp-fitness.firebaseio.com/config.json')
       .then(response => response.json())
-      .then(data => this.setState({ users: data }));
+      .then(data => this.setState({ config: data }));
   }
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
+      <div>
+        <header>
           <ul>
             {this.state.users.map(user =>
               <li key={user.id}>
