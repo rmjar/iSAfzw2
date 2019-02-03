@@ -1,0 +1,21 @@
+.container {
+  max-width: 400px;
+
+  & .title {
+    color: #fff;
+    margin-bottom: 30px;
+  }
+
+  & .input {
+    margin: 0 0 20px;
+  }
+
+  & .button {
+    display: block;
+    margin: 0 auto 40px;
+  }
+
+  & .fileUpload {
+    margin: 0 auto 20px;
+  }
+}

@@ -1,0 +1,17 @@
+.container {
+  max-width: 400px;
+
+  & .title {
+    color: #fff;
+    margin-bottom: 30px;
+  }
+
+  & .input {
+    margin-bottom: 20px;
+  }
+
+  & .button {
+    display: block;
+    margin: 0 auto 40px;
+  }
+}

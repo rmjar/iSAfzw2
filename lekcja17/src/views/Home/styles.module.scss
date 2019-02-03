@@ -1,0 +1,17 @@
+.container {
+  max-width: 300px;
+
+  & .title {
+    color: #fff;
+    margin-bottom: 50px;
+  }
+
+  & .button {
+    display: block;
+    margin: 0 auto 20px;
+  }
+
+  & .avatar {
+    margin: 20px auto;
+  }
+}

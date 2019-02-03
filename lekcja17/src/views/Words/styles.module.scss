@@ -1,0 +1,24 @@
+.button {
+  margin: 20px 10px;
+  float: right;
+}
+
+.label {
+  color: #fff;
+}
+
+.wordList {
+  width: 100%;
+  margin: 20px 0px;
+}
+
+.backLink {
+  color: #fff;
+  padding: 25px 10px;
+  display: block;
+
+
+  &:hover {
+    color: #b5e1ff;
+  }
+}
