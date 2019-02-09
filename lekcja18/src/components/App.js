@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 //import ClickMe from 'components/ClickMe';
 
+import AddProductForm from './AddProductForm';
+import ProductsList from './ProductsList';
+
 const actionIncrement = { type: 'INCREMENT' };
 const actionDecrement = { type: 'DECREMENT' };
 const actionIncrement2 = { type: 'INCREMENT2' };
@@ -17,7 +20,7 @@ const fetchData = () => {
   });
 }
 
-const actionCreatorIncrement3 = (value = 10) => (
+const actionCreatorIncrement3 = (value = 0) => (
   { type: 'INCREMENT3', payload: value }
 );
 
@@ -59,7 +62,9 @@ class App extends Component {
     const { condition } = this.state;
     return (
       <div>
-        {/* <ClickMe /> */}
+        <AddProductForm />
+        <ProductsList />
+        {/* <ClickMe />
         <div onClick={this.handleAppClick}>App</div>
         <div>{condition.toString()}</div>
         <div onClick={() => increment3(1)}>+1</div>
@@ -76,7 +81,7 @@ class App extends Component {
         <div onClick={() => {
           increment3(44)
         }}>{reducer}</div>
-        <div onClick={incrementAsync}>async</div>
+        <div onClick={incrementAsync}>async</div> */}
       </div>
     );
   }

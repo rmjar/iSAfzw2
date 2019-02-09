@@ -36,25 +36,50 @@ function reducer2(state = 0, action) {
       return state
   }
 }
+
+function products(state = [], action) {
+  switch (action.type) {
+    case 'ADD_PRODUCT':
+      return [
+        ...state.slice(),
+        { ...action.payload }
+      ];
+    case 'CHECK':
+      const index = state.findIndex(({ payload: name }) => {
+        return name === action.payload.name;
+      })
+      return state.map((e) => {
+        if (action.payload.name !== e.name) {
+          return e
+        }
+        return {
+          ...e,
+          checked: !e.checked,
+        }
+      });
+    default:
+      return state;
+  }
+}
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
   combineReducers(
-    { reducer, reducer2 }),
+    { reducer, reducer2, products }),
   composeEnhancers(
     applyMiddleware(thunk)
   )
 );
 
-store.subscribe(() => {
-  console.log(store.getState());
-})
+// store.subscribe(() => {
+//   console.log(store.getState());
+// })
 
-store.dispatch(actionInc);
-store.dispatch(actionInc);
-store.dispatch(actionInc);
-store.dispatch(actionInc);
-store.dispatch(actionDec);
-store.dispatch(actionDec);
+// store.dispatch(actionInc);
+// store.dispatch(actionInc);
+// store.dispatch(actionInc);
+// store.dispatch(actionInc);
+// store.dispatch(actionDec);
+// store.dispatch(actionDec);
 
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
 
