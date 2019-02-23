@@ -1,0 +1,44 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import * as serviceWorker from './serviceWorker';
+
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+
+// import cloneDeep from 'lodash/cloneDeep';
+
+const mainReducer = (state = { postsList: [], usersList: [] }, action) => {
+    const { payload } = action || {};
+    switch (action.type) {
+        case 'SAVE_POSTS_LIST':
+            return {
+                ...state,
+                postsList: payload,
+            }
+        case 'SAVE_USERS_LIST':
+            return {
+                ...state,
+                usersList: [...state.usersList ,...payload],
+            }
+        case 'SAVE_SINGLE_USER':
+            return {
+                ...state,
+                usersList: [...state.usersList, ...payload],
+            }
+        default:
+            return state;
+    }
+}
+
+const store = createStore(mainReducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+
+
+ReactDOM.render(<Provider store={store}> <App /> </Provider>, document.getElementById('root'));
+
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: http://bit.ly/CRA-PWA
+serviceWorker.unregister();
