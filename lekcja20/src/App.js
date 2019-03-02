@@ -8,8 +8,13 @@ export const SAVE_POSTS = 'SAVE_POSTS';
 export const SAVE_POSTS_COMPLETED = 'SAVE_POSTS_COMPLETED'
 export const SAVE_POSTS_PENDING = 'SAVE_POSTS_PENDING';
 export const SAVE_POSTS_FAILED = 'SAVE_POSTS_FAILED';
+export const SAVE_COMMENTS = 'SAVE_COMMENTS';
+export const SAVE_COMMENTS_PENDING = 'SAVE_COMMENTS_PENDING';
+export const SAVE_COMMENTS_COMPLETED = 'SAVE_COMMENTS_COMPLETED';
+export const SAVE_COMMENTS_FAILED = 'SAVE_COMMENTS_FAILED';
 
 const START_ADDR_POSTS = 'https://jsonplaceholder.typicode.com/posts';
+const START_ADDR_COMMENTS = 'https://jsonplaceholder.typicode.com/comments';
 
 const asyncFunction = () => {
   return new Promise((resolve, reject) => {
@@ -31,10 +36,40 @@ const actionFailed = {
   type: SAVE_POSTS_FAILED,
 }
 
+const actionCommentsPending = {
+  type: SAVE_COMMENTS_PENDING,
+}
+
+const actionCommentsCompleted = {
+  type: SAVE_COMMENTS_COMPLETED,
+}
+
+const actionCommentsFailed = {
+  type: SAVE_COMMENTS_FAILED,
+}
+
+const saveCommentsToStoreActn = (payload) => ({
+  type: SAVE_COMMENTS,
+  payload,
+})
+
 const savePostsToStoreActn = (payload) => ({
   type: SAVE_POSTS,
   payload,
 })
+
+const saveCommentsToStore = () => {
+  return (dispatch) => {
+    dispatch(actionCommentsPending);
+    fetch(START_ADDR_COMMENTS)
+      .then((resp) => resp.json())
+      .then((resp) => {
+        dispatch(saveCommentsToStoreActn(resp));
+        dispatch(actionCommentsCompleted);
+      })
+      .catch((error) => dispatch(actionCommentsFailed))
+  };
+}
 
 const savePostsToStore = () => {
   return (dispatch) => {
@@ -72,8 +107,9 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const { savePosts } = this.props;
+    const { savePosts, saveComments } = this.props;
     savePosts();
+    saveComments()
   }
 
   handleIncrement = (value) => {
@@ -89,7 +125,8 @@ class App extends Component {
   }
 
   render() {
-    const { posts = [] } = this.props.testState;
+    const { posts = [], comments = [] } = this.props.testState;
+    console.log(comments)
     return (
       <div className="App" >
         Counter:
@@ -99,7 +136,19 @@ class App extends Component {
           posts.map(post => {
             return <div>
               <strong>{post.title}</strong>
-              <div>{post.body} </div>
+              <div>{post.body}</div>
+              <div>==============Comments:==============</div>
+              {comments && comments
+                .filter(comment => comment.postId === post.id)
+                .map(comment => {
+                  return (<div>
+                    <div>{comment.name}</div>
+                    <div>{comment.body}</div>
+                    <div>{comment.email}</div>
+                  </div>)
+                }
+                )}
+              <div>=====================================</div>
               <br />
             </div>
           })
@@ -123,6 +172,9 @@ const mapDispatchToProps = (dispatch) => ({
   savePosts: (value) => {
     dispatch(savePostsToStore(value));
   },
+  saveComments: (value) => {
+    dispatch(saveCommentsToStore(value));
+  }
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
