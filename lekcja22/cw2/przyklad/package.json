@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "name": "cw2",
+  "version": "0.1.0",
+  "description": "Ćwiczenie 2 - Jest",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "tdd": "jest --watchAll",
+    "coverage":"jest --coverage"
+  },
+  "author": "mat3e",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^24.1.0"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "name": "cw1",
+  "version": "0.1.0",
+  "description": "Ćwiczenie 1 - najprostsze możliwe testy",
+  "main": "index.mjs",
+  "scripts": {
+    "test": "node --experimental-modules index.spec.mjs"
+  },
+  "author": "mat3e",
+  "license": "ISC"
+}

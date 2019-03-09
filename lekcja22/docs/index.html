@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="description" content="Presentation">
+    <meta name="keywords" content="presentation">
+    <meta name="author" content="mat3e">
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/white.css">
+    <link rel="stylesheet" href="css/idea.css">
+    <link rel="stylesheet" href="css/fontawesome.css">
+    <style>
+        #header {
+            color: #10a8ae;
+            text-align: left;
+            line-height: .85;
+
+            padding-left: .1em;
+
+            border-left: solid .1em #10a8ae;
+        }
+
+        #header-logo {
+            width: 290px;
+            height: 105px;
+            background: url('img/logo.png') no-repeat;
+
+            top: -4em;
+            right: 0;
+            position: absolute;
+        }
+
+        #about-me {
+            background: rgba(255, 255, 255, .5);
+            margin-top: -5em;
+            list-style-type: none;
+            float: left;
+        }
+
+        .slides section img.pure-img {
+            border: none;
+            box-shadow: none;
+        }
+
+        code[contenteditable="true"] {
+            border: 0;
+            outline: 0;
+        }
+
+        .slides section pre {
+            margin-bottom: 0;
+        }
+
+        .slides section pre+button {
+            cursor: pointer;
+
+            font-size: .65em;
+            font-weight: 100;
+            -webkit-font-smoothing: antialiased;
+
+            color: white;
+            background: rgb(175, 30, 35);
+
+            padding: 0 3px;
+            border: transparent;
+            border-radius: 4px;
+        }
+
+        .slides section a .stripped-img {
+            border: none;
+            margin: 0;
+            box-shadow: none;
+            background-color: rgba(255, 255, 255, 0);
+        }
+
+        .slides section a .stripped-img:hover {
+            border: none;
+            margin: 0;
+            box-shadow: none;
+            background-color: rgba(255, 255, 255, 0);
+        }
+
+        .slides section .comment {
+            margin-top: -20px;
+            margin-bottom: 20px;
+            color: gray;
+        }
+
+        .reveal .slides section .fragment.replace {
+            transition: none;
+            display: inline-block;
+        }
+
+        .reveal .slides section .fragment.fade-out.visible.replace {
+            display: none;
+        }
+
+        .reveal .slides section .fragment.fade-in.replace {
+            display: none;
+        }
+
+        .reveal .slides section .fragment.fade-in.visible.replace {
+            display: inline-block;
+        }
+    </style>
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section data-background-image>
+                <section data-background-color="#fff">
+                    <h1 id="header">Testy w JS
+                        <div style="font-size: .8em">Jest, TDD, E2E</div>
+                    </h1>
+                    <div id="header-logo"></div>
+                </section>
+                <section data-background-image="img/bg-hd.jpg" data-background-transition="zoom">
+                    <ul id="about-me">
+                        <li>
+                            <a href="https://www.linkedin.com/in/mateusz-chrzonstowski/">
+                                <i class="fab fa-linkedin"
+                                    style="color: #0077B5; background-color: #FFF; line-height: .75em"></i>
+                                /mateusz-chrzonstowski
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/_mat3e_">
+                                <i class="fab fa-twitter-square"
+                                    style="background-color: #1DA1F2; color: #FFF; line-height: .75em"></i>
+                                /_mat3e_
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/mat3e/">
+                                <i class="fab fa-github-square"
+                                    style="color: #24292E; background-color: #FFF; line-height: .75em"></i>
+                                /mat3e
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.reddit.com/user/_mat3e_">
+                                <i class="fab fa-reddit-square"
+                                    style="background-color: #FF4500; color: #FFF; line-height: .75em"></i>
+                                /_mat3e_
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+            </section>
+            <section>
+                <h2>
+                    <span>Plan zajęć</span>
+                </h2>
+                <ol>
+                    <li class="fragment highlight-red">O co chodzi?</li>
+                    <li>Jest</li>
+                    <li>TDD</li>
+                    <li>Testy integracyjne, E2E</li>
+                </ol>
+            </section>
+            <section>
+                <h2>
+                    <span>Testy?</span>
+                </h2>
+                <ul>
+                    <li class="fragment">Kod, który odpala nasz kod</li>
+                    <li class="fragment">Przy odpalaniu - sprawdzenia</li>
+                    <li class="fragment">Jak sprawdzać?
+                        <ul>
+                            <li class="fragment">Bierzemy np. pojedynczą funkcję, komponent</li>
+                            <li class="fragment">Zawsze jest jakiś wsad (input) i jakaś zwrotka (output/result)</li>
+                            <li class="fragment">Sprawdzamy, czy dla konkretnego wsadu (wejścia) mamy konkretną (spodziewaną)
+                                zwrotkę (wyjście)</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            <section>
+                <h2>
+                    <span>Co testować?</span>
+                </h2>
+                <a href="https://www.wykop.pl/wpis/11176272/tester-webaplikacji-wchodzi-do-baru-zamawia-piwo-z/"
+                    class="fragment">
+                    <img src="img/tester.png">
+                </a>
+            </section>
+            <section>
+                <h2>
+                    <span>A zatem</span>
+                </h2>
+                <pre><code>const sq = a => a**2</code></pre>
+                <ul>
+                    <li class="fragment"><code>1</code>, <code>0</code>, <code>2</code>, <code>-3</code>,
+                        <code>100</code></li>
+                    <li class="fragment"><code>null</code>, <code>undefined</code>, <code>NaN</code></li>
+                    <li class="fragment"><code>1.1</code></li>
+                    <li class="fragment"><code>Number.MAX_SAFE_INTEGER</code>, <code>Number.MAX_VALUE</code>,
+                        <code>Number.NEGATIVE_INFINITY</code></li>
+                    <li class="fragment"><code>'foo'</code></li>
+                </ul>
+            </section>
+            <section>
+                <h2>
+                    <span>Ćwiczenie 1</span>
+                </h2>
+                <ol>
+                    <li class="fragment">Pobrać i odpalić zaczęty przykład
+                        <ul>
+                            <li class="fragment">Zwrócić uwagę na komendę <code>npm test</code></li>
+                        </ul>
+                    </li>
+                    <li class="fragment">Rozbudować o kolejne przypadki testowe (np. wcześniej wymienione)</li>
+                    <li class="fragment">Zepsuć jakiś test. Jaki jest wynik?</li>
+                    <li class="fragment">Jak można ulepszyć testy? Nie łamać DRY itd.</li>
+                </ol>
+                <aside class="notes">
+                    <ul>
+                        <li>O co chodzi z tym spec</li>
+                        <li>O co chodzi z assert</li>
+                        <li>mjs - użycie importów i exportów</li>
+                        <li>destrukturyzacja tablicy</li>
+                        <li>package.json i npm test</li>
+                        <li>Tablica par i pętla</li>
+                    </ul>
+                </aside>
+            </section>
+            <section>
+                <h2>
+                    <span>Komu to potrzebne? A po co?</span>
+                </h2>
+                <ul>
+                    <li class="fragment">Wykrycie błędów w obecnym kodzie</li>
+                    <li class="fragment">Zabezpieczenie się na przyszłe błędy - "utrwalenie" kontraktów</li>
+                    <li class="fragment">Łatwiejszy refactoring</li>
+                    <li class="fragment">Poczucie bezpieczeństwa :)</li>
+                </ul>
+            </section>
+            <section>
+                <h2>
+                    <span>Narzędzia</span>
+                </h2>
+                <ul>
+                    <li class="fragment">Runner</li>
+                    <li class="fragment">Framework</li>
+                    <li class="fragment">"Konsolowa" przeglądarka (testy e2e)</li>
+                    <li class="fragment">Asercje</li>
+                    <li class="fragment">Mockowanie</li>
+                </ul>
+                <aside class="notes">Puzzle, z których będziemy składać; czym jest mockowanie w jednostkowych</aside>
+            </section>
+            <section>
+                <h2>
+                    <span>Piramida</span>
+                </h2>
+                <img src="img/piramida.png" class="pure-img" style="width: 30%">
+                <br>
+                <a href="https://martinfowler.com/bliki/TestPyramid.html" class="fragment">
+                    <img src="img/test-pyramid.png" class="pure-img" style="width: 30%">
+                </a>
+                <aside class="notes">
+                    <ul>
+                        <li>jednostkowe - wszędzie</li>
+                        <li>integracyjne - poziom wyżej, bez mockowania, połączenia</li>
+                        <li>e2e - happy path aplikacji</li>
+                    </ul>
+                </aside>
+            </section>
+            <section data-background-image="img/unit-integration.gif" data-background-size="contain"></section>
+            <section>
+                <a href="https://kahoot.it/">
+                    <img src="img/kahoot.svg" class="pure-img">
+                </a>
+            </section>
+            <section>
+                <h2>
+                    <span>Plan zajęć</span>
+                </h2>
+                <ol>
+                    <li>O co chodzi?</li>
+                    <li class="fragment highlight-red">Jest</li>
+                    <li>TDD</li>
+                    <li>Testy integracyjne, E2E</li>
+                </ol>
+            </section>
+            <section>
+                <h2>
+                    <span>Co i jak</span>
+                </h2>
+                <ul>
+                    <li class="fragment">
+                        <a href="https://jestjs.io/">jestjs.io/</a>
+                    </li>
+                    <li class="fragment">Zrobione przez facebooka, musi być popularne</li>
+                    <li class="fragment">Runner, framework, asercje, mockowanie, JSDOM</li>
+                    <li class="fragment">Od razu w create-react-app</li>
+                    <li class="fragment">Snapshot testing - porównywanie wynikowych HTML-i</li>
+                    <li class="fragment"><code>npm i -D jest</code></li>
+                    <li class="fragment"><code>"test": "jest"</code></li>
+                </ul>
+                <aside class="notes">Ustawia process.env.NODE_ENV na 'test'</aside>
+            </section>
+            <section>
+                <h2>
+                    <span>Ćwiczenie 2</span>
+                </h2>
+                <ol>
+                    <li class="fragment">Pobrać i odpalić zaczęty przykład
+                        <ul>
+                            <li class="fragment">Co się zmieniło od ostatniego razu?</li>
+                        </ul>
+                    </li>
+                    <li class="fragment">Przeczytać o <a href="https://jestjs.io/docs/en/using-matchers">Matcher</a>ach
+                    </li>
+                    <li class="fragment">Napisać test dla liczby <code>1.1</code>, wykorzystać odpowiedni matcher</li>
+                    <li class="fragment">Przeczytać o <a
+                            href="https://jestjs.io/docs/en/setup-teardown#scoping"><code>describe</code></a></li>
+                    <li class="fragment">Wykorzystać <code>describe</code> do zgrupowania testów</li>
+                </ol>
+                <aside class="notes">
+                    Dociągnięty jest, module.exports i require, mniejsze testy; expect - i że .not też jest dostępne
+                    (asercje)
+                </aside>
+            </section>
+            <section>
+                <a href="https://kahoot.it/">
+                    <img src="img/kahoot.svg" class="pure-img">
+                </a>
+            </section>
+            <section>
+                <h2>
+                    <span>Plan zajęć</span>
+                </h2>
+                <ol>
+                    <li>O co chodzi?</li>
+                    <li>Jest</li>
+                    <li class="fragment highlight-red">TDD</li>
+                    <li>Testy integracyjne, E2E</li>
+                </ol>
+            </section>
+            <section>
+                <h2>
+                    <span>A gdyby tak...</span>
+                </h2>
+                <ul>
+                    <li class="fragment">Pisanie testów ZANIM napiszemy kod</li>
+                    <li class="fragment">Test-Driven Development</li>
+                    <li class="fragment">Bardzo wysokie pokrycie testami</li>
+                    <li class="fragment">Duża pewność odnośnie jakości kodu</li>
+                    <li class="fragment">Na każdym kroku piszemy tylko niezbędne minimum, żeby nasze testy przeszły</li>
+                </ul>
+                <aside class="notes">Wymusza myślenie o skrajnych przypadkach; dopóki nie sprawdzamy nulla,
+                    wystarczająco kodu to będzie np. zwrotka nulla albo pustej tablicy itd.</aside>
+            </section>
+            <section data-background-image="img/tdd.png" data-background-size="50%"></section>
+            <section>
+                <h2 style="margin: 0">
+                    <span>Ćwiczenie 3</span>
+                </h2>
+                <ol>
+                    <li class="fragment"><a href="https://osherove.com/tdd-kata-1/">TDD Kata</a>, Jest</li>
+                    <li class="fragment">Kalkulator dodający liczby zapisane tekstem</li>
+                    <li class="fragment">Istnieje <b>funkcja</b> add
+                        <ul>
+                            <li class="fragment">Napisać funkcję</li>
+                        </ul>
+                    </li>
+                    <li class="fragment">Funkcja zwraca liczbę (domyślnie 0)
+                        <ul>
+                            <li class="fragment">Napisać zwracanie 0</li>
+                        </ul>
+                    </li>
+                    <li class="fragment">Funkcja dostaje tekst, inaczej rzuca wyjątek
+                        <ul>
+                            <li class="fragment">Dopisać sprawdzenie</li>
+                        </ul>
+                    </li>
+                    <li class="fragment">Zwraca liczbę podaną w stringu (np. <code>1</code> dla
+                        <code>'1'</code>)
+                    </li>
+                    <li class="fragment">Funkcja zwraca sumę liczb, wymienionych po przecinku (np. <code>9</code> dla
+                        <code>'3,6'</code>)
+                    </li>
+                </ol>
+            </section>
+            <section>
+                <a href="https://kahoot.it/">
+                    <img src="img/kahoot.svg" class="pure-img">
+                </a>
+            </section>
+            <section>
+                <h2>
+                    <span>Plan zajęć</span>
+                </h2>
+                <ol>
+                    <li>O co chodzi?</li>
+                    <li>Jest</li>
+                    <li>TDD</li>
+                    <li class="fragment highlight-red">Testy integracyjne, E2E</li>
+                </ol>
+            </section>
+            <section>
+                <h2>
+                    <span>E2E</span>
+                </h2>
+                <ul>
+                    <li class="fragment">End-to-end</li>
+                    <li class="fragment">Symulujemy przeglądarkę, NIE mockujemy</li>
+                    <li class="fragment">Nasz program w działaniu</li>
+                    <li class="fragment">Często używa się leciutkich przeglądarek (Chromium)</li>
+                    <li class="fragment">Happy path</li>
+                </ul>
+            </section>
+            <section>
+                <h2>
+                    <span>Integracyjne</span>
+                </h2>
+                <ul>
+                    <li class="fragment">NIE mockujemy</li>
+                    <li class="fragment">Możemy testować np. kilka reactowych komponentów i ich współpracę</li>
+                    <li class="fragment">Skupienie się na najważniejszych fragmentach</li>
+                    <li class="fragment">Wykorzystanie np. JSDOM</li>
+                </ul>
+            </section>
+            <section>
+                <h2>
+                    <span>React Testing Library</span>
+                </h2>
+                <ul>
+                    <li class="fragment"><a href="https://testing-library.com/react">testing-library.com/react</a></li>
+                    <li class="fragment">Współpracuje z Jestem</li>
+                    <li class="fragment">
+                        <pre style="width: 100%; margin: 0"><code class="javascript" data-trim>
+                            const {getByLabelText} = render(
+                                &lt;MyComponent props1={value} />
+                            );
+                            expect(getByLabelText('text')).toBeTruthy();
+                        </code></pre>
+                    </li>
+                    <li class="fragment">Dostępne różne <a
+                            href="https://testing-library.com/docs/api-queries#queries">getBy</a></li>
+                </ul>
+            </section>
+            <section>
+                <h2>
+                    <span>Ćwiczenie 4</span>
+                </h2>
+                <ol>
+                    <li class="fragment">Pobrać i odpalić zaczęty przykład
+                        <ul>
+                            <li class="fragment">Co się zmieniło od ostatniego razu?</li>
+                        </ul>
+                    </li>
+                    <li class="fragment">Powalczyć, pozmieniać</li>
+                </ol>
+            </section>
+            <section>
+                <a href="https://kahoot.it/">
+                    <img src="img/kahoot.svg" class="pure-img">
+                </a>
+            </section>
+            <section>
+                <h2 style="margin: 0">
+                    <span>Dzięki!</span>
+                </h2>
+                <a href="http://geek-and-poke.com/geekandpoke/2013/7/28/tdd">
+                    <img src="img/tdd-reality.jpg" style="width: 40%" class="pure-img">
+                </a>
+            </section>
+        </div>
+    </div>
+    <script src="js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+        const controls = (function () {
+            Reveal.initialize({
+                history: true,
+                // - null: Media will only autoplay if data-autoplay is present
+                autoPlayMedia: null,
+                transition: 'slide', // none/fade/slide/convex/concave/zoom
+                transitionSpeed: 'default', // default/fast/slow
+                backgroundTransition: 'slide', // none/fade/slide/convex/concave/zoom
+                dependencies: [
+                    { src: 'js/classList.js', condition: function () { return !document.body.classList; } },
+
+                    { src: 'js/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                    { src: 'js/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+
+                    // Syntax highlight for <code> elements
+                    { src: 'js/highlight.js', callback: function () { hljs.initHighlightingOnLoad(); } },
+
+                    // Zoom in and out with Alt+click
+                    { src: 'js/zoom.js' },
+
+                    { src: 'notes/notes.js' },
+
+                    { src: 'js/math.js' }
+                ]
+            });
+
+            document.querySelectorAll('.reveal .slides > section:not([data-background-image])').forEach(s => {
+                s.setAttribute('data-background-image', 'img/logo.png');
+                s.setAttribute('data-background-size', '240px');
+                s.setAttribute('data-background-position', '20px 20px');
+            });
+
+            return {
+                evalCode: function (btn) {
+                    eval(btn.previousElementSibling.innerText);
+                }
+            }
+        })();
+    </script>
+</body>
+
+</html>

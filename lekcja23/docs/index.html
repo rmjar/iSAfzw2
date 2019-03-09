@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="description" content="Presentation">
+    <meta name="keywords" content="presentation">
+    <meta name="author" content="mat3e">
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/white.css">
+    <link rel="stylesheet" href="css/idea.css">
+    <link rel="stylesheet" href="css/fontawesome.css">
+    <style>
+        #header {
+            color: #10a8ae;
+            text-align: left;
+            line-height: .85;
+
+            padding-left: .1em;
+
+            border-left: solid .1em #10a8ae;
+        }
+
+        #header-logo {
+            width: 290px;
+            height: 105px;
+            background: url('img/logo.png') no-repeat;
+
+            top: -4em;
+            right: 0;
+            position: absolute;
+        }
+
+        #about-me {
+            background: rgba(255, 255, 255, .5);
+            margin-top: -5em;
+            list-style-type: none;
+            float: left;
+        }
+
+        .slides section img.pure-img {
+            border: none;
+            box-shadow: none;
+        }
+
+        code[contenteditable="true"] {
+            border: 0;
+            outline: 0;
+        }
+
+        .slides section pre {
+            margin-bottom: 0;
+        }
+
+        .slides section pre+button {
+            cursor: pointer;
+
+            font-size: .65em;
+            font-weight: 100;
+            -webkit-font-smoothing: antialiased;
+
+            color: white;
+            background: rgb(175, 30, 35);
+
+            padding: 0 3px;
+            border: transparent;
+            border-radius: 4px;
+        }
+
+        .slides section a .stripped-img {
+            border: none;
+            margin: 0;
+            box-shadow: none;
+            background-color: rgba(255, 255, 255, 0);
+        }
+
+        .slides section a .stripped-img:hover {
+            border: none;
+            margin: 0;
+            box-shadow: none;
+            background-color: rgba(255, 255, 255, 0);
+        }
+
+        .slides section .comment {
+            margin-top: -20px;
+            margin-bottom: 20px;
+            color: gray;
+        }
+
+        .reveal .slides section .fragment.replace {
+            transition: none;
+            display: inline-block;
+        }
+
+        .reveal .slides section .fragment.fade-out.visible.replace {
+            display: none;
+        }
+
+        .reveal .slides section .fragment.fade-in.replace {
+            display: none;
+        }
+
+        .reveal .slides section .fragment.fade-in.visible.replace {
+            display: inline-block;
+        }
+    </style>
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section data-background-image>
+                <section data-background-color="#fff">
+                    <h1 id="header">webpack
+                        <div style="font-size: .5em">bundlowanie strony</div>
+                    </h1>
+                    <div id="header-logo"></div>
+                </section>
+                <section data-background-image="img/bg-hd.jpg" data-background-transition="zoom">
+                    <ul id="about-me">
+                        <li>
+                            <a href="https://www.linkedin.com/in/mateusz-chrzonstowski/">
+                                <i class="fab fa-linkedin"
+                                    style="color: #0077B5; background-color: #FFF; line-height: .75em"></i>
+                                /mateusz-chrzonstowski
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/_mat3e_">
+                                <i class="fab fa-twitter-square"
+                                    style="background-color: #1DA1F2; color: #FFF; line-height: .75em"></i>
+                                /_mat3e_
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/mat3e/">
+                                <i class="fab fa-github-square"
+                                    style="color: #24292E; background-color: #FFF; line-height: .75em"></i>
+                                /mat3e
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.reddit.com/user/_mat3e_">
+                                <i class="fab fa-reddit-square"
+                                    style="background-color: #FF4500; color: #FFF; line-height: .75em"></i>
+                                /_mat3e_
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+            </section>
+            <section>
+                <h2>
+                    <span>Plan zajęć</span>
+                </h2>
+                <ol>
+                    <li class="fragment highlight-red">Wprowadzenie</li>
+                    <li>Pluginy</li>
+                    <li>Loadery</li>
+                    <li>Konfiguracja, profile budowania</li>
+                    <li>webpack-dev-server</li>
+                </ol>
+            </section>
+            <section>
+                <h2>
+                    <span>Ćwiczenie 1 (1/3)</span>
+                </h2>
+                <ol>
+                    <li class="fragment">Pobrać i odpalić (npm start) zaczęty przykład
+                        <ul>
+                            <li class="fragment">Czy wszystko działa? Czy zadziała w przeglądarce?</li>
+                        </ul>
+                    </li>
+                    <li class="fragment">Zmienić kod (np. przy pomocy żarówek), żeby korzystać z modułów ES6</li>
+                    <li class="fragment">Czy da się odpalić aplikację (npm start)?
+                        <ul>
+                            <li class="fragment">Dlaczego?</li>
+                        </ul>
+                    </li>
+                    <li class="fragment">Czy zmiana z domyślnych exportu i importu na zwykłe pomaga?</li>
+                </ol>
+            </section>
+            <section>
+                <h2>
+                    <span>Problem</span>
+                </h2>
+                <ul>
+                    <li class="fragment">Node i ES6 jeszcze nie do końca współdziałają w kwestii modułów
+                        <ul>
+                            <li class="fragment">Historia się kłania</li>
+                        </ul>
+                    </li>
+                    <li class="fragment">Można obchodzić problem: (mjs, --experimental-modules)</li>
+                    <li class="fragment">Jedno z rozwiązań - Babel
+                        <ul>
+                            <li class="fragment">Zamienia export i import z powrotem na module.exports i require</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            <section>
+                <h2>
+                    <span>Nasze rozwiązanie</span>
+                </h2>
+                <div class="fragment">
+                    <a href="https://webpack.js.org/">
+                        <img src="img/webpack.png" style="width: 70%; margin: 0">
+                    </a>
+                </div>
+                <ul>
+                    <li class="fragment"><i>static module bundler</i></li>
+                    <li class="fragment">"Chodzi" po plikach, znajduje powiązania</li>
+                    <li class="fragment">Wypluwa statyczne pliki, dające się odpalić w przeglądarce</li>
+                </ul>
+            </section>
+            <section>
+                <h2>
+                    <span>#0cjs</span>
+                </h2>
+                <ul>
+                    <li class="fragment">Podejście promowane od webpacka 4
+                        <ul>
+                            <li class="fragment">Trzeba było nadganiać za <a href="https://parceljs.org/">Parcelem</a>
+                                ;)</li>
+                        </ul>
+                    </li>
+                    <li class="fragment">Domyślne wejście (entry), domyślny <i>output</i></li>
+                    <li class="fragment">Żeby działało, trzeba się dostosować do pewnych konwencji
+                        <ul>
+                            <li class="fragment"><i>Convention over configuration</i></li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            <section>
+                <h2>
+                    <span>Ćwiczenie 1 (2/3)</span>
+                </h2>
+                <ol>
+                    <li class="fragment">Dociągnąć zależności dev: webpack, webpack-cli</li>
+                    <li class="fragment">Dodać skrypt npm:
+                        <pre style="width: 100%; margin: 0"><code class="javascript">"build": "webpack"</code></pre>
+                    </li>
+                    <li class="fragment">Uruchomić skrypt. Co sie dzieje?</li>
+                    <li class="fragment">Poprawić ostrzeżenie i błąd</li>
+                    <li class="fragment">Zmienić skrypt start:
+                        <pre
+                            style="width: 100%; margin: 0"><code class="javascript">"start": "node dist/main.js"</code></pre>
+                    </li>
+                </ol>
+                <aside class="notes">Dlaczego możemy odpalić webpacka bezpośrednio? src, --mode; popatrzeć na logi
+                    webpacka; spoko są</aside>
+            </section>
+            <section>
+                <h2>
+                    <span>Ćwiczenie 1 (3/3)</span>
+                </h2>
+                <ol>
+                    <li class="f>ragment">Zbudować dist/main.js z użyciem <code>--mode=production</code></li>
+                    <li class="fragment">Przejrzeć plik wynikowy. Czy jest czytelny?</li>
+                    <li class="fragment">Podmienić na "development"</li>
+                    <li class="fragment">Jak wygląda teraz?</li>
+                </ol>
+            </section>
+            <section>
+                <h2>
+                    <span>Tryby budowania</span>
+                </h2>
+                <ul>
+                    <li class="fragment">Na produkcji wszystko powinno być jak najmniejsze
+                        <ul>
+                            <li class="fragment">Szybkie działanie dla użytkownika</li>
+                        </ul>
+                    </li>
+                    <li class="fragment">Development - więcej szczegółów
+                        <ul>
+                            <li class="fragment">Logi w konsoli</li>
+                            <li class="fragment">Dokładniejsze informacje o błędach</li>
+                            <li class="fragment">Czytelniejszy kod</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            <section>
+                <a href="https://kahoot.it/">
+                    <img src="img/kahoot.svg" class="pure-img">
+                </a>
+            </section>
+            <section>
+                <h2>
+                    <span>Plan zajęć</span>
+                </h2>
+                <ol>
+                    <li>Wprowadzenie</li>
+                    <li class="fragment highlight-red">Pluginy</li>
+                    <li>Loadery</li>
+                    <li>Konfiguracja, profile budowania</li>
+                    <li>webpack-dev-server</li>
+                </ol>
+            </section>
+            <section>
+                <h2>
+                    <span>Pluginy?</span>
+                </h2>
+                <ul>
+                    <li class="fragment">Tryb produkcji = nie tylko przejście przez pliki
+                        <ul>
+                            <li class="fragment">Minifikacja</li>
+                            <li class="fragment">Maglowanie</li>
+                        </ul>
+                    </li>
+                    <li class="fragment">Webpack "pod spodem" używa pluginów</li>
+                    <li class="fragment">Są też dodatkowe pluginy, dodające więcej funkcji</li>
+                    <li class="fragment">Najłatwiej skorzystać z wyszukiwarki na stronie webpacka</li>
+                </ul>
+            </section>
+            <section>
+                <h2>
+                    <span>Używanie</span>
+                </h2>
+                <ul>
+                    <li class="fragment">Znaleźć plugin (np. na stronie webpacka)</li>
+                    <li class="fragment">Zainstalować plugin jako zależność dev</li>
+                    <li class="fragment">Dodać plugin do konfiguracji webpacka, klucz <code>plugins</code>
+                        <ul>
+                            <li class="fragment">Niestety, konfiguracja zaczyna być potrzebna</li>
+                            <li class="fragment">Kolejność pluginów ma znaczenie!</li>
+                        </ul>
+                    </li>
+                </ul>
+                <pre class="fragment"><code class="javascript" data-trim contenteditable="true">
+                    // webpack.config.js
+                    // "require" is a must:
+                    const HtmlWebpackPlugin = require('html-webpack-plugin');
+                    
+                    module.exports = {
+                        plugins: [new HtmlWebpackPlugin()] // new html
+                    };
+                </code></pre>
+            </section>
+            <section>
+                <h2>
+                    <code>HtmlWebpackPlugin</code>
+                </h2>
+                <ul>
+                    <li class="fragment"><a href="https://github.com/jantimon/html-webpack-plugin">GitHub (+ doc)</a>
+                    </li>
+                    <li class="fragment">Pozwala przenieść HTML do folderu dist</li>
+                    <li class="fragment">Od razu łączy HTML-a ze stworzonymi plikami JS</li>
+                    <li class="fragment">Może stworzyć domyślny plik</li>
+                    <li class="fragment">Można podać mu jaki plik powinien wykorzystać <code
+                            class="javascript">{template: 'path/to/file.html'}</code></li>
+                    <li class="fragment">Wiele HTML-i? Użyć plugina wiele razy!</li>
+                </ul>
+            </section>
+            <section>
+                <h2 style="margin: 0">
+                    <span>Ćwiczenie 2</span>
+                </h2>
+                <ol style="font-size: .95em">
+                    <li class="fragment">Kod z wcześniejszych ćwiczeń - podmienić <code>console.log</code> na
+                        <code>alert</code></li>
+                    <li class="fragment">Dociągnąć <code>HtmlWebpackPlugin</code></li>
+                    <li class="fragment">Utworzyć plik konfiguracyjny webpack.config.js
+                        <ul>
+                            <li class="fragment">Jak na wcześniejszym slajdzie</li>
+                            <li class="fragment">Na tym samym poziomie, co package.json</li>
+                        </ul>
+                    </li>
+                    <li class="fragment">Zbudować, otworzyć dist/index.html w przeglądarce</li>
+                    <li class="fragment">Utworzyć własny index.html, na tym samym poziomie, co package.json</li>
+                    <li class="fragment">Skonfigurować plugin, żeby korzystał z "naszego" index.html</li>
+                </ol>
+            </section>
+            <section>
+                <h2>
+                    <span>Ćwiczenie 3</span>
+                </h2>
+                <ol>
+                    <li class="fragment">Dodać folder img i dać w nim obrazek img.jpg</li>
+                    <li class="fragment">Dodać znacznik img do index.html
+                        <ul>
+                            <li class="fragment">Powinien wskazywać na obrazek img/img.jpg</li>
+                        </ul>
+                    </li>
+                    <li class="fragment">Zbudować aplikację, otworzyć dist/index.html</li>
+                    <li class="fragment">Czy wszystko działa? Dlaczego?</li>
+                    <li class="fragment">Poszukać informacji o <code>CopyWebpackPlugin</code>, wykorzystać go i poprawić
+                    </li>
+                </ol>
+            </section>
+            <section>
+                <h2>
+                    <span>Ćwiczenie 4</span>
+                </h2>
+                <ol>
+                    <li class="fragment">Zmienić nazwę obrazka na img2 (pamiętać o zmianie w index.html)</li>
+                    <li class="fragment">Uruchomić budowanie webpacka</li>
+                    <li class="fragment">Odświeżyć dist/index.html w przeglądarce. Czy działa?</li>
+                    <li class="fragment">Ile obrazków znajduje się w folderze dist/img?</li>
+                    <li class="fragment">Dociągnąć i użyć w konfiguracji <code>CleanWebpackPlugin</code></li>
+                    <li class="fragment">Dodać go na końcu tablicy pluginów, zbudować aplikację</li>
+                </ol>
+            </section>
+            <section>
+                <a href="https://kahoot.it/">
+                    <img src="img/kahoot.svg" class="pure-img">
+                </a>
+            </section>
+            <section>
+                <h2>
+                    <span>Plan zajęć</span>
+                </h2>
+                <ol>
+                    <li>Wprowadzenie</li>
+                    <li>Pluginy</li>
+                    <li class="fragment highlight-red">Loadery</li>
+                    <li>Konfiguracja, profile budowania</li>
+                    <li>webpack-dev-server</li>
+                </ol>
+            </section>
+            <section>
+                <h2>
+                    <span>Po co?</span>
+                </h2>
+                <ul>
+                    <li class="fragment">Plugin to raczej jednorazowa akcja</li>
+                    <li class="fragment">Jak podejść np. do konkretnych plików?
+                        <ul>
+                            <li class="fragment">Np. wszystkie jsx przetłumaczyć Babelem</li>
+                        </ul>
+                    </li>
+                    <li class="fragment">Loadery = powtarzalne zadania, np. per typ pliku</li>
+                </ul>
+                <pre class="fragment"><code class="javascript" data-trim contenteditable="true">
+                    module: {
+                        rules: [{
+                            test: /\.scss$/,
+                            exclude: /(node_modules|bower_components)/,
+                            use: [ "style-loader", "css-loader", "sass-loader" ]
+                        }]
+                    }
+                </code></pre>
+                <aside class="notes">Że ten use to może być też obiekt albo tablica obiektów z kluczami, np. loader
+                    klucz</aside>
+            </section>
+            <section>
+                <h2>
+                    <span>Wyrażenia regularne</span>
+                </h2>
+                <pre><code class="javascript" data-trim contentEditable="true">
+                    const testable = '.abcdefabc';
+                    let regEx = /abc/;
+                    console.log(testable.match(regEx));
+                </code><code class="javascript fragment" data-trim contenteditable="true">
+                    regEx = /./g
+                    console.log(testable.match(regEx));
+                </code></pre>
+                <button onclick="controls.evalCode(this)" style="font-weight: bold">eval</button>
+                <aside class="notes">
+                    <ul>
+                        <li>Pokazać konsolę</li>
+                        <li>Dodać g i pokazać 2 elementy</li>
+                        <li>cd? - że znak zapytania to coś może wystąpić</li>
+                        <li>$ - koniec pliku (jak CSS selektor)</li>
+                        <li>Że true/false - przerobić na xyz</li>
+                        <li>Kropka pasuje do dowolnego</li>
+                        <li>Gwiazdka 0 lub więcej razy i zawsze szukane największe możliwe dopasowanie</li>
+                        <li>Jak dopasować konkretnie kropkę? \.</li>
+                    </ul>
+                </aside>
+            </section>
+            <section>
+                <h2>
+                    <span>Ćwiczenie 5</span>
+                </h2>
+                <ol>
+                    <li class="fragment">Pobrać przykład i odpalić komendę npm test</li>
+                    <li class="fragment">Zmodyfikować wyrażenie regularne - szukamy plików <b>kończących się</b> na
+                        ".js" lub ".jsx"</li>
+                </ol>
+            </section>
+            <section>
+                <h2>
+                    <span>React? Babel?</span>
+                </h2>
+                <div class="fragment"><a href="https://webpack.js.org/loaders/babel-loader/">babel-loader</a></div>
+                <pre class="fragment"><code class="javascript" data-trim>
+                    use: {
+                        loader: 'babel-loader',
+                        options: {
+                            presets: ['@babel/preset-env'],
+                            plugins: ['@babel/plugin-proposal-object-rest-spread']
+                        }
+                    }
+                </code></pre>
+            </section>
+            <section>
+                <h2>
+                    <span>Ćwiczenie 6</span>
+                </h2>
+                <ol>
+                    <li class="fragment">Rozwinąć kod z ćwiczenia 4</li>
+                    <li class="fragment">Usunąć obrazek z index.html</li>
+                    <li class="fragment">Dodać znacznik <code class="html">&lt;main id="app">&lt;/main></code></li>
+                    <li class="fragment">
+                        <pre style="margin: 0; width: 100%"><code class="bash" data-trim>
+                            npm i react react-dom
+                        </code></pre>
+                    </li>
+                    <li class="fragment">Zmienić index.js na index.jsx
+                        <ul>
+                            <li class="fragment">Użyć ReactDOM na elemencie main</li>
+                            <li class="fragment">Przy pomocy JSX dodać znacznik obrazka i wyświetlać alert dopiero po
+                                kliknięciu</li>
+                        </ul>
+                    </li>
+                    <li class="fragment">Dodać <code>entry: './src/index.jsx'</code> w webpack.config.js</li>
+                    <li class="fragment">
+                        <pre style="margin: 0; width: 100%"><code class="bash" data-trim>
+                            npm i -D babel-loader @babel/core @babel/preset-env @babel/preset-react
+                        </code></pre>
+                    </li>
+                </ol>
+            </section>
+            <section>
+                <a href="https://kahoot.it/">
+                    <img src="img/kahoot.svg" class="pure-img">
+                </a>
+            </section>
+            <section>
+                <h2>
+                    <span>Plan zajęć</span>
+                </h2>
+                <ol>
+                    <li>Wprowadzenie</li>
+                    <li>Pluginy</li>
+                    <li>Loadery</li>
+                    <li class="fragment highlight-red">Konfiguracja, profile budowania</li>
+                    <li>webpack-dev-server</li>
+                </ol>
+            </section>
+            <section>
+                <h2>
+                    <span>Problemy</span>
+                </h2>
+                <ul>
+                    <li class="fragment">Plik main.js jest duży, doszedł cały React</li>
+                    <li class="fragment">Ciężko znaleźć nasz kod</li>
+                    <li class="fragment">Budowanie po zmianach w naszym kodzie za każdym razem przebudowuje i Reacta
+                    </li>
+                </ul>
+                <aside class="notes">Poza tym już dotknęliśmy konfiguracji - entry</aside>
+            </section>
+            <section>
+                <h2>
+                    <span>Konfiguracja</span>
+                </h2>
+                <ul>
+                    <li class="fragment"><code>entry</code>, <code>output</code> <span class="fragment">- wejście i
+                            wyjście</span></li>
+                    <li class="fragment"><code>target</code> <span class="fragment">- jak budować (web, node)</span>
+                    </li>
+                    <li class="fragment"><code>mode</code> <span class="fragment">- tryb,
+                            <code>process.env.NODE_ENV</code></span></li>
+                    <li class="fragment"><code>plugins</code> <span class="fragment">- jednorazowe akcje</span></li>
+                    <li class="fragment"><code>module</code>, <code>rules</code> <span class="fragment">- reguły
+                            chodzienia po plikach (budowania)</span></li>
+                    <li class="fragment"><code>devtool</code> <span class="fragment">- łączenie kodu źródłowego z
+                            wynikowym</span></li>
+                    <li class="fragment"><code>optimization</code> <span class="fragment">- rozwiązanie na nasze
+                            problemy</span></li>
+                </ul>
+                <aside class="notes">
+                    <ul>
+                        <li>target do testów np. node</li>
+                        <li>mode to ustawialiśmy z palca, z linii komend</li>
+                        <li>devtool - może przy ts</li>
+                    </ul>
+                </aside>
+            </section>
+            <section>
+                <h2>
+                    <span>Optymalizacje</span>
+                </h2>
+                <pre><code class="javascript" data-trim contenteditable="true">
+                        optimization: {
+                            runtimeChunk: 'single',
+                            splitChunks: {
+                                cacheGroups: {
+                                    vendor: {
+                                        test: /node_modules/,
+                                        name: 'vendors',
+                                        chunks: 'all'
+                                    }
+                                }
+                            }
+                        }
+                </code></pre>
+            </section>
+            <section>
+                <h2>
+                    <span>Ćwiczenie 7</span>
+                </h2>
+                <ol>
+                    <li class="fragment">Usunąć <code>--mode</code> ze skryptu npm</li>
+                    <li class="fragment">Dodać <code>mode</code> do webpack.config.js</li>
+                    <li class="fragment">Użyć optymalizacji w projekcie</li>
+                    <li class="fragment">Porównać czasy pierwszego i kolejnych budowań</li>
+                    <li class="fragment">Przeanalizować pliki wynikowe</li>
+                </ol>
+                <aside class="notes">Bonus: ogarnąć devtool i tryb dev</aside>
+            </section>
+            <section>
+                <h2>
+                    <span>Ćwiczenie bonusowe</span>
+                </h2>
+                <p>
+                    Przejść przez repozytorium <code>create-react-app</code>; odnaleźć gdzie tam są ukryte i jak
+                    wyglądają konfiguracje webpacka
+                </p>
+                <aside class="notes">
+                    packages/react-scripts
+                </aside>
+            </section>
+            <section>
+                <a href="https://kahoot.it/">
+                    <img src="img/kahoot.svg" class="pure-img">
+                </a>
+            </section>
+            <section>
+                <h2>
+                    <span>Plan zajęć</span>
+                </h2>
+                <ol>
+                    <li>Wprowadzenie</li>
+                    <li>Pluginy</li>
+                    <li>Loadery</li>
+                    <li>Konfiguracja, profile budowania</li>
+                    <li class="fragment highlight-red">webpack-dev-server</li>
+                </ol>
+            </section>
+            <section>
+                <h2>
+                    <span>Lokalny serwer</span>
+                </h2>
+                <ul>
+                    <li class="fragment">Można lepiej niż odpalanie budowań oraz index.html</li>
+                    <li class="fragment">Bez serwera ciężko przetestować np. routing</li>
+                    <li class="fragment">Skoro webpack chodzi po plikach, to może mógłby je od razu odpalać?</li>
+                </ul>
+                <p class="fragment"><code>webpack-dev-server</code>!</p>
+            </section>
+            <section>
+                <h2>
+                    <span>Ćwiczenie 8</span>
+                </h2>
+                <ol>
+                    <li class="fragment">Ściągnąć zależność dev: webpack-dev-server</li>
+                    <li class="fragment">Zmienić npm start na uruchomienie serwera</li>
+                    <li class="fragment">Dodać opcje <code>--mode=development</code> oraz <code>--open</code></li>
+                    <li class="fragment">Zmienić trochę wiadomość w pliku test.js</li>
+                    <li class="fragment">Czy zmiana jest widoczna w przeglądarce?</li>
+                </ol>
+            </section>
+            <section>
+                <a href="https://kahoot.it/">
+                    <img src="img/kahoot.svg" class="pure-img">
+                </a>
+            </section>
+            <section>
+                <h2>
+                    <span>Bonusy</span>
+                </h2>
+                <ul>
+                    <li><a href="https://webpack.js.org/guides/tree-shaking/#root">Trzęsienie drzewem</a> - brak nieużywanego kodu</li>
+                    <li><a href="https://github.com/ronami/minipack">Module bundler od zera</a> - najłatwiej zrozumieć, tworząc swoje</li>
+                </ul>
+            </section>
+        </div>
+    </div>
+    <script src="js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+        const controls = (function () {
+            Reveal.initialize({
+                history: true,
+                // - null: Media will only autoplay if data-autoplay is present
+                autoPlayMedia: null,
+                transition: 'slide', // none/fade/slide/convex/concave/zoom
+                transitionSpeed: 'default', // default/fast/slow
+                backgroundTransition: 'slide', // none/fade/slide/convex/concave/zoom
+                dependencies: [
+                    { src: 'js/classList.js', condition: function () { return !document.body.classList; } },
+
+                    { src: 'js/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                    { src: 'js/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+
+                    // Syntax highlight for <code> elements
+                    { src: 'js/highlight.js', callback: function () { hljs.initHighlightingOnLoad(); } },
+
+                    // Zoom in and out with Alt+click
+                    { src: 'js/zoom.js' },
+
+                    { src: 'notes/notes.js' },
+
+                    { src: 'js/math.js' }
+                ]
+            });
+
+            document.querySelectorAll('.reveal .slides > section:not([data-background-image])').forEach(s => {
+                s.setAttribute('data-background-image', 'img/logo.png');
+                s.setAttribute('data-background-size', '240px');
+                s.setAttribute('data-background-position', '20px 20px');
+            });
+
+            return {
+                evalCode: function (btn) {
+                    eval(btn.previousElementSibling.innerText);
+                }
+            }
+        })();
+    </script>
+</body>
+
+</html>

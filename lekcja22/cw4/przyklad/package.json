@@ -1,0 +1,21 @@
+{
+  "private": true,
+  "version": "0.0.0",
+  "name": "cw4",
+  "description": "Ćwiczenie 4 - React",
+  "dependencies": {
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3"
+  },
+  "devDependencies": {
+    "@babel/core": "*",
+    "@babel/preset-env": "*",
+    "@babel/preset-react": "*",
+    "babel-jest": "*",
+    "jest": "*",
+    "react-testing-library": "*"
+  },
+  "scripts": {
+    "test": "jest"
+  }
+}

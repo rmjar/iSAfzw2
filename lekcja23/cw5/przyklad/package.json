@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "name": "cw5",
+  "version": "0.1.0",
+  "description": "Ćwiczenie 5",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.spec.js"
+  },
+  "author": "mat3e",
+  "license": "ISC"
+}

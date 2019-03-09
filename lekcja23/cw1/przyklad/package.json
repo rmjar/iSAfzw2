@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "name": "cw1",
+  "version": "0.1.0",
+  "description": "Ćwiczenie 1",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "mat3e",
+  "license": "ISC"
+}
