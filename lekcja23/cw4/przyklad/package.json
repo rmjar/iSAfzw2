@@ -1,0 +1,26 @@
+{
+  "private": true,
+  "name": "cw1",
+  "version": "0.1.0",
+  "description": "Ćwiczenie 1",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --mode=development --open --config prod.config.js",
+    "build": "webpack --config prod.config.js"
+  },
+  "author": "mat3e",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.5",
+    "clean-webpack-plugin": "^2.0.0",
+    "copy-webpack-plugin": "^5.0.0",
+    "file-loader": "^3.0.1",
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.2.1"
+  }
+}

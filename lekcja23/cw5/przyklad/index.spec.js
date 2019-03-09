@@ -6,10 +6,13 @@ const files = [
     'wrong.jsxyz'
 ];
 // FIXME: napisać regexa
-const regex = /./;
+const regex = /\.jsx?$/;
 
 // when
-const results = files.flatMap(filename => filename.match(regex))
+const results = files.map(filename => {
+    const result = filename.match(regex);
+    return result ? result.pop() : null;
+});
 
 // then
 if (results[1] !== '.jsx' || results[0] !== results[2] || results[3] !== null) {
