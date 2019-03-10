@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="description" content="Presentation">
+    <meta name="keywords" content="presentation">
+    <meta name="author" content="mat3e">
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/white.css">
+    <link rel="stylesheet" href="css/idea.css">
+    <link rel="stylesheet" href="css/fontawesome.css">
+    <style>
+        #header {
+            color: #10a8ae;
+            text-align: left;
+            line-height: .85;
+
+            padding-left: .1em;
+
+            border-left: solid .1em #10a8ae;
+        }
+
+        #header-logo {
+            width: 290px;
+            height: 105px;
+            background: url('img/logo.png') no-repeat;
+
+            top: -4em;
+            right: 0;
+            position: absolute;
+        }
+
+        #about-me {
+            background: rgba(255, 255, 255, .75);
+            list-style-type: none;
+            float: left;
+        }
+
+        .slides section img.pure-img {
+            border: none;
+            box-shadow: none;
+        }
+
+        code[contenteditable="true"] {
+            border: 0;
+            outline: 0;
+        }
+
+        .slides section pre {
+            margin-bottom: 0;
+        }
+
+        .slides section pre+button {
+            cursor: pointer;
+
+            font-size: .65em;
+            font-weight: 100;
+            -webkit-font-smoothing: antialiased;
+
+            color: white;
+            background: rgb(175, 30, 35);
+
+            padding: 0 3px;
+            border: transparent;
+            border-radius: 4px;
+        }
+
+        .slides section a .stripped-img {
+            border: none;
+            margin: 0;
+            box-shadow: none;
+            background-color: rgba(255, 255, 255, 0);
+        }
+
+        .slides section a .stripped-img:hover {
+            border: none;
+            margin: 0;
+            box-shadow: none;
+            background-color: rgba(255, 255, 255, 0);
+        }
+
+        .slides section .comment {
+            margin-top: -20px;
+            margin-bottom: 20px;
+            color: gray;
+        }
+
+        .reveal .slides section .fragment.replace {
+            transition: none;
+            display: inline-block;
+        }
+
+        .reveal .slides section .fragment.fade-out.visible.replace {
+            display: none;
+        }
+
+        .reveal .slides section .fragment.fade-in.replace {
+            display: none;
+        }
+
+        .reveal .slides section .fragment.fade-in.visible.replace {
+            display: inline-block;
+        }
+    </style>
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <section data-background-image data-background-color="#fff">
+                <h1 id="header">Typowanie
+                </h1>
+                <div id="header-logo"></div>
+            </section>
+            <section>
+                <h2>
+                    <span>Plan zajęć</span>
+                </h2>
+                <ol>
+                    <li class="fragment highlight-red">Typy danych w JS</li>
+                    <li>TypeScript</li>
+                    <li>Kompilacja</li>
+                    <li>Tworzenie klas, dodatkowe właściwości</li>
+                    <li>Interfejsy</li>
+                    <li>Typy dla bibliotek</li>
+                </ol>
+            </section>
+            <section>
+                <h2>
+                    <span>JS nie ma typów?</span>
+                </h2>
+                <div class="fragment">
+                    Bullshit!
+                    <pre><code class="javascript" data-trim contentEditable="true">
+                        [ 1, '', true, {}, [], () => {}, null, undefined ]
+                            .forEach(e => alert(typeof e));
+                    </code></pre>
+                    <button onclick="controls.evalCode(this)" style="font-weight: bold">eval</button>
+                    <aside class="notes">
+                        [] instanceof Array na następnym slajdzie
+                    </aside>
+                </div>
+            </section>
+            <section>
+                <h2>
+                    <span>Zagwozdki z typami</span>
+                </h2>
+                <pre><code class="javascript" data-trim contentEditable="true">
+                    // object?
+                    const arr = [];
+                    alert(typeof arr);
+                </code><code class="javascript fragment" data-trim contentEditable="true">
+                    alert(arr instanceof Array);
+                </code><code class="javascript fragment" data-trim contentEditable="true">
+                    // equality?
+                    alert(1 == '1');
+                </code><code class="javascript fragment" data-trim contentEditable="true">
+                    alert(1 === '1');
+                </code><code class="javascript fragment" data-trim contentEditable="true">
+                    // dynamic typing
+                    let test = 'foo';
+                    alert(typeof test);
+                    test = 7;
+                    alert(typeof test);
+                </code></pre>
+                <button onclick="controls.evalCode(this)" style="font-weight: bold">eval</button>
+            </section>
+            <section>
+                <h2>
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures">Typowanie w JS</a>
+                </h2>
+            </section>
+            <section>
+                <h2>
+                    <span>Plan zajęć</span>
+                </h2>
+                <ol>
+                    <li>Typy danych w JS</li>
+                    <li class="fragment highlight-red">TypeScript</li>
+                    <li>Kompilacja</li>
+                    <li>Tworzenie klas, dodatkowe właściwości</li>
+                    <li>Interfejsy</li>
+                    <li>Typy dla bibliotek</li>
+                </ol>
+            </section>
+            <section>
+                <h2>
+                    <span>TypeScript</span>
+                </h2>
+                <ul>
+                    <li class="fragment">Nadzbiór JS-a</li>
+                    <li class="fragment">Coś się udało Microsoftowi ;)</li>
+                    <li class="fragment">Umie to, co Babel - tłumaczenie nowego i przyszłego JS-a na obecny (i na stary,
+                        np. ES3)</li>
+                    <li class="fragment">Dodaje statyczne typowanie</li>
+                    <li class="fragment">Zbiór definicji (typowań) dla wielu znanych bibliotek</li>
+                </ul>
+                <aside class="notes">
+                    <ul>
+                        <li>o nadzbiorze za chwilę</li>
+                        <li>statyczne typowanie wychwytuje wiele błędów, które w JS dopiero w przeglądarce, np.
+                            wywołanie funkcji bez parametrów/ze złymi parametrami
+                        </li>
+                        <li>Typowania - np. co powinna zwracać funkcja render z Reacta - wiemy</li>
+                    </ul>
+                </aside>
+            </section>
+            <section>
+                <h2>
+                    <span>Nadzbiór?</span>
+                </h2>
+                <a href="ts-editor.html" target="_blank">Demo time!</a>
+            </section>
+            <section>
+                <h2>
+                    <span>Deklarowanie</span>
+                </h2>
+                <ul>
+                    <li class="fragment">Tworzymy zmienną i od razu przypisujemy jej wartość? TS potrafi odgadnąć i
+                        "utrwalić" typ</li>
+                    <li class="fragment">Tworzenie i brak przypisania? Typ <code>any</code></li>
+                    <li class="fragment">Pełna wersja (: typ)
+                        <pre
+                            style="margin: 0; width: 100%"><code class="typescript" data-trim>const final: string = 'FINAL VALUE';</code></pre>
+                    </li>
+                </ul>
+                <aside class="notes">
+                    <ul>
+                        <li>deklarowanie i inicjalizowanie</li>
+                        <li>type inference</li>
+                        <li>w Javie np. deklarując od razu podajemy typ; ale Kotlin już tak</li>
+                        <li>przykład 2
+                            <ul>
+                                <li>Usunąć tam :string, type inference</li>
+                                <li>Dodać tam jawnie :any</li>
+                                <li>Zmienić any na stringa i niech płonie</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </aside>
+            </section>
+            <section>
+                <h2>
+                    <span>Typy w funkcjach</span>
+                </h2>
+                <ul>
+                    <li class="fragment">Co typować?
+                        <ul>
+                            <li class="fragment">Co funkcja zwraca</li>
+                            <li class="fragment">Jakie są typy parametrów</li>
+                        </ul>
+                    </li>
+                    <li class="fragment">
+                        <pre
+                            style="margin: 0; width: 100%"><code class="typescript" data-trim>function test(arg: number): string {}</code></pre>
+                    </li>
+                    <li class="fragment">
+                        Zmienne, które mogą przyjmować funkcje:
+                        <pre
+                            style="margin: 0; width: 100%"><code class="typescript" data-trim>let foo: (arg: number) => string;</code></pre>
+                    </li>
+                    <li class="fragment">Type inference dla zwracanego typu zadziała</li>
+                </ul>
+                <aside class="notes">Warto pisać jawnie, żeby rozumieć ocb po sygnaturze metody, np. Promise&lt;void>
+                    <br>
+                    W przykładzie uważać na kompilację
+                </aside>
+            </section>
+            <section>
+                <h2>
+                    <span>Ćwiczenie 1</span>
+                </h2>
+                <ol>
+                    <li class="fragment">Pobrać i odpalić zaczęty przykład</li>
+                    <li class="fragment">Czy dostajemy dobre wyniki w konsoli?</li>
+                    <li class="fragment">Zmienić pliki z .mjs na .ts</li>
+                    <li class="fragment">Dodać typowania, poprawić argumenty w index.ts:
+                        <ul>
+                            <li class="fragment">2, 2</li>
+                            <li class="fragment">2, 0</li>
+                        </ul>
+                    </li>
+                    <li class="fragment">Czy da się odpalić aplikację?</li>
+                    <li class="fragment">Spróbować poprawić</li>
+                </ol>
+            </section>
+            <section>
+                <a href="https://kahoot.it/">
+                    <img src="img/kahoot.svg" class="pure-img">
+                </a>
+                <!-- typy w JS i ogólnie o TS -->
+            </section>
+            <section>
+                <h2>
+                    <span>Plan zajęć</span>
+                </h2>
+                <ol>
+                    <li>Typy danych w JS</li>
+                    <li>TypeScript</li>
+                    <li class="fragment highlight-red">Kompilacja</li>
+                    <li>Tworzenie klas, dodatkowe właściwości</li>
+                    <li>Interfejsy</li>
+                    <li>Typy dla bibliotek</li>
+                </ol>
+            </section>
+            <section>
+                <h2>
+                    <span>Wstęp</span>
+                </h2>
+                <ul>
+                    <li class="fragment">Edytory kodu same z siebie ogarniają już bardzo dużo</li>
+                    <li class="fragment">Można samemu edytorowi kazać kompilować TS
+                        <ul>
+                            <li class="fragment">Niezalecane. Jak budować kod na jakimś serwerze CI?</li>
+                        </ul>
+                    </li>
+                    <li class="fragment">Istnieje też specjalne narzędzie - tsc
+                        <ul>
+                            <li class="fragment">TypeScript Compiler</li>
+                            <li class="fragment">Dostarczane z samym TypeScriptem</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            <section>
+                <h2>
+                    <span>Ćwiczenie 2</span>
+                </h2>
+                <ol>
+                    <li class="fragment"><code>npm i -D typescript</code></li>
+                    <li class="fragment">Dodać i odpalić skrypt budowania:
+                        <pre
+                            style="margin: 0; width: 100%"><code class="bash" data-trim>"build": "tsc index.ts magic.ts"</code></pre>
+                    </li>
+                    <li class="fragment">Jak wyglądają pliki wynikowe?</li>
+                    <li class="fragment">Zaktualizować skrypt "start" i odpalić aplikację</li>
+                </ol>
+            </section>
+            <section>
+                <h2 style="margin: 0">
+                    <span>Ćwiczenie 3</span>
+                </h2>
+                <ol>
+                    <li class="fragment">Usunąć zbudowane JS-y</li>
+                    <li class="fragment">
+                        <a href="https://www.typescriptlang.org/docs/handbook/tsconfig-json.html">Poczytać o
+                            konfiguracji Typescripta</a>
+                    </li>
+                    <li class="fragment">Dodać plik tsconfig.json
+                        <ul>
+                            <li class="fragment">W <code>compilerOptions</code> dać tylko <code>noImplicitAny</code>
+                                <code>removeComments</code> i
+                                <code>preserveConstEnums</code>
+                            </li>
+                            <li class="fragment">Dać opcję <code>include</code> - <code>src/**/*</code></li>
+                            <li class="fragment"><code>exclude</code> - <code>node_modules</code></li>
+                        </ul>
+                    </li>
+                    <li class="fragment">Przenieść cały kod TS do folderu src/</li>
+                    <li class="fragment">W skrypcie budowania odpalać tsc, zmienić start i sprawdzić, czy działa</li>
+                </ol>
+                <aside class="notes">Usunąć pliki JS</aside>
+            </section>
+            <section>
+                <h2 style="margin: 0">
+                    <span>Ćwiczenie 4</span>
+                </h2>
+                <ol>
+                    <li class="fragment">Dociągnąć dev: webpack, webpack-cli, awesome-typescript-loader,
+                        webpack-dev-server, html-webpack-plugin</li>
+                    <li class="fragment">Stworzyć webpack.config.js na podstawie <a
+                            href="https://www.npmjs.com/package/awesome-typescript-loader">dokumentacji</a></li>
+                    <li class="fragment">Wykorzystać też HtmlWebpackPlugin do stworzenia pliku html</li>
+                    <li class="fragment">Wykorzystać webpacka w skrypcie budowania</li>
+                    <li class="fragment">Wykorzystać webpack-dev-server w uruchamianiu</li>
+                    <li class="fragment">Odpalić istniejącą aplikację</li>
+                </ol>
+            </section>
+            <section>
+                <a href="https://kahoot.it/">
+                    <img src="img/kahoot.svg" class="pure-img">
+                </a>
+            </section>
+            <section>
+                <h2>
+                    <span>Plan zajęć</span>
+                </h2>
+                <ol>
+                    <li>Typy danych w JS</li>
+                    <li>TypeScript</li>
+                    <li>Kompilacja</li>
+                    <li class="fragment highlight-red">Tworzenie klas, dodatkowe właściwości</li>
+                    <li>Interfejsy</li>
+                    <li>Typy dla bibliotek</li>
+                </ol>
+            </section>
+            <section>
+                <pre><code class="typescript" contenteditable="true" data-trim>
+                    class Person {
+                        private name: string;
+                        private surname: string;
+                    
+                        constructor(name: string, surname: string) {
+                            this.name = name;
+                            this.surname = surname;
+                        }
+                        
+                        introduce(): void {
+                            alert(`Hi, I'm ${this.name} ${this.surname}!`);
+                        }
+                    }
+                </code></pre>
+                <aside class="notes">pola, pola prywatne</aside>
+            </section>
+            <section>
+                <pre style="width: 100%"><code class="typescript fragment fade-out replace" contenteditable="true" data-trim data-fragment-index="1">
+                    class Person {
+                        private name: string;
+                        private surname: string;
+                    
+                        constructor(name: string, surname: string) {
+                            this.name = name;
+                            this.surname = surname;
+                        }
+                    }
+                </code><code class="typescript fragment fade-in replace" contenteditable="true" data-trim data-fragment-index="1">
+                    class Person {
+                        constructor(private name: string, private surname: string) {}
+                    }
+                </code></pre>
+            </section>
+            <section>
+                <h2>
+                    <span>Plan zajęć</span>
+                </h2>
+                <ol>
+                    <li>Typy danych w JS</li>
+                    <li>TypeScript</li>
+                    <li>Kompilacja</li>
+                    <li>Tworzenie klas, dodatkowe właściwości</li>
+                    <li class="fragment highlight-red">Interfejsy</li>
+                    <li>Typy dla bibliotek</li>
+                </ol>
+            </section>
+            <section>
+                <h2>
+                    <span>Złożone typy</span>
+                </h2>
+                <ul>
+                    <li class="fragment">Funkcja, która przyjmuje obiekt z polem <code>name</code>?</li>
+                    <li class="fragment">Interfejsy pozwalają takie definiować!</li>
+                    <li class="fragment">Informacja o interfejsach jest całkowicie wymazywana z kodu</li>
+                    <li class="fragment">Interfejs może zawierać pola i metody (sygnatury)</li>
+                    <li class="fragment">Klasy mogą implementować interfejs - dodawać wymagane pola</li>
+                </ul>
+                <aside class="notes">export nie działa w 5. przykładzie online
+                    <br>w 6. przykładzie popsuć implementację - np. dać =7
+                </aside>
+            </section>
+            <section>
+                <a href="https://kahoot.it/">
+                    <img src="img/kahoot.svg" class="pure-img">
+                </a>
+            </section>
+            <section>
+                <h2>
+                    <span>Plan zajęć</span>
+                </h2>
+                <ol>
+                    <li>Typy danych w JS</li>
+                    <li>TypeScript</li>
+                    <li>Kompilacja</li>
+                    <li>Tworzenie klas, dodatkowe właściwości</li>
+                    <li>Interfejsy</li>
+                    <li class="fragment highlight-red">Typy dla bibliotek</li>
+                </ol>
+            </section>
+            <section>
+                <h2>
+                    <span>@types</span>
+                </h2>
+                <ul>
+                    <li class="fragment"><a href="https://github.com/DefinitelyTyped/DefinitelyTyped">Dużo gotowych
+                            typowań</a></li>
+                    <li class="fragment">Jeśli coś piszemy od razu w TS, typy można wygenerować flagą
+                        <code>"declaration": true</code></li>
+                    <li class="fragment">Pliki z typami = .d.ts</li>
+                    <li class="fragment">Na GitHubie - .ts</li>
+                    <li class="fragment">W NPM - wygenerowane .d.ts i .js</li>
+                    <li class="fragment">TypeScript zna też typy istniejących rzeczy, np. <code>Promise</code></li>
+                </ul>
+            </section>
+            <section>
+                <h2>
+                    <span>React</span>
+                </h2>
+                <pre><code class="typescript" data-trim contenteditable="true">
+                    interface Props {
+                        name: string;
+                    }
+
+                    interface State {}
+
+                    class Welcome extends React.Component&lt;Props, State> {
+                        render() {
+                            return &lt;h1>Hello, {this.props.name}&lt;/h1>;
+                        }
+                    }
+                </code></pre>
+            </section>
+            <section>
+                <h2>
+                    <span>Ćwiczenie 5</span>
+                </h2>
+                <ol>
+                    <li class="fragment">Pobrać zaczęty przykład</li>
+                    <li class="fragment">Jak są skonfigurowane webpack i tsc?</li>
+                    <li class="fragment">Pobrać dev: @types/react-dom, @types/react</li>
+                    <li class="fragment">Zmienić plik component.js na plik component.ts</li>
+                    <li class="fragment">Zdefiniować dobre typowanie w pliku component.ts</li>
+                    <li class="fragment">Uruchomić aplikację</li>
+                </ol>
+            </section>
+            <section data-background-image="img/bg-hd.jpg" data-background-transition="zoom">
+                <h2 style="margin-top: -2em;">
+                    <span style="background: rgba(255, 255, 255, .75);">Dzięki, powodzenia i do zobaczenia :)</span>
+                </h2>
+                <ul id="about-me">
+                    <li>
+                        <a href="https://www.linkedin.com/in/mateusz-chrzonstowski/">
+                            <i class="fab fa-linkedin"
+                                style="color: #0077B5; background-color: #FFF; line-height: .75em"></i>
+                            /mateusz-chrzonstowski
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://twitter.com/_mat3e_">
+                            <i class="fab fa-twitter-square"
+                                style="background-color: #1DA1F2; color: #FFF; line-height: .75em"></i>
+                            /_mat3e_
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/mat3e/">
+                            <i class="fab fa-github-square"
+                                style="color: #24292E; background-color: #FFF; line-height: .75em"></i>
+                            /mat3e
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.reddit.com/user/_mat3e_">
+                            <i class="fab fa-reddit-square"
+                                style="background-color: #FF4500; color: #FFF; line-height: .75em"></i>
+                            /_mat3e_
+                        </a>
+                    </li>
+                </ul>
+            </section>
+        </div>
+    </div>
+    <script src="js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+        const controls = (function () {
+            Reveal.initialize({
+                history: true,
+                // - null: Media will only autoplay if data-autoplay is present
+                autoPlayMedia: null,
+                transition: 'slide', // none/fade/slide/convex/concave/zoom
+                transitionSpeed: 'default', // default/fast/slow
+                backgroundTransition: 'slide', // none/fade/slide/convex/concave/zoom
+                dependencies: [
+                    { src: 'js/classList.js', condition: function () { return !document.body.classList; } },
+
+                    { src: 'js/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                    { src: 'js/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+
+                    // Syntax highlight for <code> elements
+                    { src: 'js/highlight.js', callback: function () { hljs.initHighlightingOnLoad(); } },
+
+                    // Zoom in and out with Alt+click
+                    { src: 'js/zoom.js' },
+
+                    { src: 'notes/notes.js' },
+
+                    { src: 'js/math.js' }
+                ]
+            });
+
+            document.querySelectorAll('.reveal .slides > section:not([data-background-image])').forEach(s => {
+                s.setAttribute('data-background-image', 'img/logo.png');
+                s.setAttribute('data-background-size', '240px');
+                s.setAttribute('data-background-position', '20px 20px');
+            });
+
+            return {
+                evalCode: function (btn) {
+                    eval(btn.previousElementSibling.innerText);
+                }
+            }
+        })();
+    </script>
+</body>
+
+</html>
